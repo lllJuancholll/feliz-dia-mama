@@ -8,122 +8,184 @@
     <style>
         /* Estilos generales para ocupar toda la pantalla y resetear márgenes */
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body, html {
-            height: 100%;
-            width: 100%;
-            font-family: 'Montserrat', sans-serif;
-            background-color: #ffe6e6; /* Un fondo rosa suave */
-            overflow: hidden; /* Evita que se pueda hacer scroll */
-        }
+body, html {
+    min-height: 100%;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffe6e6;
+    /* Quitamos el overflow:hidden para que se pueda deslizar en cualquier equipo */
+    overflow-x: hidden; 
+}
 
-        /* --- PANTALLA DE INICIO (El "Sobre") --- */
-        #pantalla-inicio {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 10; /* Se mantiene por encima de todo */
-            cursor: pointer;
-            transition: opacity 1s ease-in-out; /* Efecto suave al desaparecer */
-        }
+/* --- PANTALLA DE INICIO (SOBRE) --- */
+#pantalla-inicio {
+    position: fixed; /* Se queda fijo arriba hasta que se abre */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    cursor: pointer;
+    transition: opacity 1s ease-in-out;
+}
 
-        .texto-inicio {
-            font-size: 1.5rem;
-            color: #d81b60;
-            font-weight: bold;
-            text-align: center;
-            padding: 20px;
-            animation: latido 1.5s infinite; /* Animación de latido */
-        }
+.texto-inicio {
+    font-size: 1.5rem;
+    color: #d81b60;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+    animation: latido 1.5s infinite;
+}
 
-        /* --- DISEÑO PRINCIPAL DE LA TARJETA --- */
-        #contenido-principal {
-            display: none; /* Oculto hasta que se toque la pantalla */
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            width: 100%;
-            background-image: radial-gradient(circle, #fff0f5 0%, #ffc0cb 100%);
-			background-image:url(https://i.imgur.com/vJKUxVq.png);
-			background-position:center;
-			background-repeat: no-repeat;
-            text-align: center;
-            padding: 20px;
-        }
+/* --- CONTENIDO PRINCIPAL --- */
+#contenido-principal {
+    display: none; /* Se activa con el clic */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ocupa al menos todo el alto de la pantalla */
+    width: 100%;
+    
+    /* Imagen de fondo optimizada para PC y Celular */
+    background-image: url(https://i.imgur.com/Denl18p.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; /* Esto hace que la imagen cubra toda la web sin deformarse */
+    background-attachment: fixed; /* Efecto elegante: el fondo se queda quieto al deslizar */
+    
+    text-align: center;
+    padding: 50px 20px;
+}
 
-        .titulo {
-            font-family: 'Dancing Script', cursive;
-            font-size: 4.5rem; /* Tamaño grande para PC */
-            color: #85113F;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-		.titulo2 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 5rem; /* Tamaño grande para PC */
-            color: #c2185b;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
+/* --- BLOQUES DE TEXTO CON TRANSPARENCIA --- */
+.contenedor-titulos, .mensaje {
+    background: rgba(255, 255, 255, 0.5); /* Fondo blanco con transparencia */
+    backdrop-filter: blur(4px); /* Efecto de vidrio esmerilado */
+    border-radius: 20px;
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 700px; /* Ancho máximo para que en PC no se vea gigante */
+    padding: 30px;
+    margin-bottom: 30px;
+}
 
-        .mensaje {
-            font-size: 1 rem;
-            color: #880e4f;
-            max-width: 600px;
-            line-height: 1.6;
-            background: rgba(255, 255, 255, 0.6);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0px 10px 20px rgba(0,0,0,0.05);
-        }
+.titulo {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4.5rem;
+    color: #85113F;
+    margin-bottom: 5px;
+}
 
-        .corazon {
-            font-size: 3rem;
-            color: #e91e63;
-            margin-top: 20px;
-        }
+.titulo2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 5rem;
+    color: #c2185b;
+    margin-bottom: 0;
+}
 
-        /* Animación para que el texto de inicio palpite */
-        @keyframes latido {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
+.mensaje p {
+    font-size: 1.2rem;
+    color: #880e4f;
+    line-height: 1.7;
+}
 
-        /* Ocultar el reproductor de audio */
-        audio {
-            display: none;
-        }
+.corazon {
+    font-size: 3rem;
+    color: #e91e63;
+    margin-top: 15px;
+}
 
-        /* --- ADAPTACIÓN PARA CELULARES (Responsive) --- */
-        @media (max-width: 768px) {
-            .titulo {
-                font-size: 3rem; /* Letra un poco más pequeña para que quepa en el celular */
-            }
-			.titulo2 {
-                font-size: 4.5rem; /* Letra un poco más pequeña para que quepa en el celular */
-            }
-            .mensaje {
-                font-size: 1rem;
-                padding: 20px;
-                width: 90%;
-            }
-            .texto-inicio {
-                font-size: 1.2rem;
-            }
-        }
+/* --- ADAPTACIÓN PARA CELULARES --- */
+@media (max-width: 768px) {
+    .titulo {
+        font-size: 2.8rem;
+    }
+    .titulo2 {
+        font-size: 3.5rem;
+    }
+    .tarjeta-blanca, .mensaje {
+        padding: 20px; /* Menos relleno para ganar espacio */
+    }
+
+}
+
+@keyframes latido {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+	/* Esta clase le da el mismo fondo que al mensaje */
+}
+.tarjeta-unica {
+    /* Bajamos la opacidad a 0.1 o 0.15 para que sea casi invisible */
+    background: rgba(255, 255, 255, 0.1); 
+    
+    /* Aumentamos un poco el desenfoque para que el texto siga siendo legible */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    
+    /* Un borde muy fino para dar estructura sin tapar la foto */
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    
+    padding: 40px 30px;
+    border-radius: 30px;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.05); /* Sombra muy sutil */
+    
+    width: 90%;
+    max-width: 650px;
+    margin: 20px auto;
+}
+
+/* Línea decorativa opcional entre nombre y mensaje */
+.linea-divisora {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(133, 17, 63, 0.3), transparent);
+    margin: 20px auto;
+    width: 80%;
+}
+
+.titulo {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem; /* Ajustado para que no sea gigante */
+    color: #85113F;
+    margin: 0;
+}
+
+.titulo2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    color: #c2185b;
+    margin-bottom: 10px;
+}
+.mensaje-texto p {
+    font-size: 1.15rem;
+    color: #ffffff; /* Texto blanco suele verse mejor en fondos muy transparentes */
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 1); /* Sombra al texto para que resalte sobre la foto */
+    line-height: 1.5;
+}
+
+.titulo, .titulo2 {
+    /* Si prefieres mantener los colores rosa/vino, añade una sombra clara atrás */
+    text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.4);
+}
+
+/* Para celular, bajamos un poco más los tamaños */
+@media (max-width: 768px) {
+    .titulo { font-size: 2.5rem; }
+    .titulo2 { font-size: 2.8rem; }
+    .tarjeta-unica { padding: 25px 15px; }
+    .mensaje-texto p { font-size: 1rem; }
+}
     </style>
 </head>
 <body>
@@ -139,18 +201,20 @@
     </div>
 
     <div id="contenido-principal">
+    <div class="tarjeta-unica">
         <h1 class="titulo">¡Feliz Día Mamá!</h1>
-		 <h1 class="titulo2">Mariluz Corona</h1>
-        <div class="mensaje">
-            <p align="center">Mamá, a veces la vida va tan rápido que olvido detenerme y decirte lo que realmente siento. Pero hoy quiero que lo escuches claro: tú eres el centro de mi mundo y una de las persona más importante que tengo.
-
-Tu amor ha sido el suelo que piso y el cielo que me cuida. Gracias por ser esa fuerza silenciosa que nunca se rinde y por enseñarme, sin decir mucho, lo que significa la verdadera entrega. No importa a dónde me lleve el camino o cuántos años pasen, siempre serás mi refugio, mi primera llamada cuando estoy feliz y mi primer pensamiento cuando necesito paz.</p>
-            <div align="center"><br>
-            </div>
-            <p align="center">Te amo no solo por ser mi madre, sino por ser mi ejemplo, mi hogar y el regalo más grande que la vida me ha dado</p>
+        <h1 class="titulo2">Maria Luisa Corona</h1>
+        
+        <div class="linea-divisora"></div> <div class="mensaje-texto">
+            <p>Mamá, a veces la vida va tan rápido que olvido detenerme y decirte lo que realmente siento. Pero hoy quiero que lo escuches claro: tú eres el centro de mi mundo y una de las personas más importantes que tengo.</p>
+            <br>
+            <p>Tu amor ha sido el suelo que piso y el cielo que me cuida. Gracias por ser esa fuerza silenciosa que nunca se rinde y por enseñarme, sin decir mucho, lo que significa la verdadera entrega. No importa a dónde me lleve el camino o cuántos años pasen, siempre serás mi refugio.</p>
+            <br>
+            <p>Te amo no solo por ser mi madre, sino por ser mi ejemplo, mi hogar y el regalo más grande que la vida me ha dado.</p>
             <div class="corazon">❤️</div>
         </div>
     </div>
+</div>
 
     <script>
         const pantallaInicio = document.getElementById('pantalla-inicio');

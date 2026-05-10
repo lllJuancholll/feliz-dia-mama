@@ -14,11 +14,11 @@
         }
 
         body, html {
-    min-height: 100%; /* Cambiado de height a min-height */
+    min-height: 100%; /* Permite que crezca */
     width: 100%;
     font-family: 'Montserrat', sans-serif;
     background-color: #ffe6e6;
-    /* Eliminamos overflow: hidden para permitir el scroll */
+    overflow-x: hidden; /* Solo bloquea el movimiento hacia los lados */
 }
 
 /* Cambiamos la pantalla de inicio a 'fixed' para que cubra todo 
@@ -100,21 +100,18 @@
 
         /* --- ADAPTACIÓN PARA CELULARES (Responsive) --- */
         @media (max-width: 768px) {
-            .titulo {
-                font-size: 3rem; /* Letra un poco más pequeña para que quepa en el celular */
-            }
-			.titulo2 {
-                font-size: 4.5rem; /* Letra un poco más pequeña para que quepa en el celular */
-            }
-            .mensaje {
-                font-size: 1rem;
-                padding: 20px;
-                width: 90%;
-            }
-            .texto-inicio {
-                font-size: 1.2rem;
-            }
-        }
+    .titulo {
+        font-size: 2.5rem; /* Un poco más pequeño para que no se corte */
+    }
+    .titulo2 {
+        font-size: 3rem;   /* Ajustado para que el nombre quepa en una línea */
+    }
+    .mensaje {
+        font-size: 1rem;
+        padding: 20px;
+        width: 95%; /* Que aproveche mejor el ancho del celular */
+    }
+}
     </style>
 </head>
 <body>

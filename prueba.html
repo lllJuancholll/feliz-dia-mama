@@ -111,6 +111,14 @@
         padding: 20px;
         width: 95%; /* Que aproveche mejor el ancho del celular */
     }
+	.contenedor-cabecera {
+    background: rgba(255, 255, 255, 0.5); /* Fondo blanco semi-transparente */
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    display: inline-block; /* Para que la caja se ajuste al ancho del texto */
+    backdrop-filter: blur(5px); /* Opcional: le da un toque elegante de desenfoque al fondo */
+}
 }
     </style>
 </head>
@@ -127,8 +135,10 @@
     </div>
 
     <div id="contenido-principal">
-        <h1 class="titulo">¡Feliz Día Mamá!</h1>
-		 <h1 class="titulo2">Mariluz Corona</h1>
+        <div class="contenedor-cabecera">
+    <h1 class="titulo">¡Feliz Día Mamá!</h1>
+    <h1 class="titulo2">Rosa Galvez Benites</h1>
+</div>
         <div class="mensaje">
             <p align="center">Mamá, a veces la vida va tan rápido que olvido detenerme y decirte lo que realmente siento. Pero hoy quiero que lo escuches claro: tú eres el centro de mi mundo y una de las persona más importante que tengo.
 

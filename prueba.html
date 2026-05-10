@@ -126,47 +126,58 @@ body, html {
     100% { transform: scale(1); }
 	/* Esta clase le da el mismo fondo que al mensaje */
 }
-.tarjeta-blanca, .mensaje {
-    background: rgba(255, 255, 255, 0.7); /* Transparencia */
-    backdrop-filter: blur(10px);        /* Efecto elegante de vidrio */
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0px 10px 30px rgba(0,0,0,0.1);
-    width: 95%;                         /* Se adapta al ancho del cel */
-    max-width: 700px;                   /* No se estira de más en PC */
-    margin-bottom: 20px;                /* Espacio entre los dos cuadros */
+.tarjeta-unica {
+    /* Fondo de cristal muy suave para que no tape la foto */
+    background: rgba(255, 255, 255, 0.25); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    padding: 40px 30px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 15px 35px rgba(0,0,0,0.1);
+    
+    width: 90%;
+    max-width: 650px;
+    margin: 20px auto;
+    text-align: center;
 }
 
-/* Ajustes de los títulos para que no tengan márgenes internos raros */
+/* Línea decorativa opcional entre nombre y mensaje */
+.linea-divisora {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(133, 17, 63, 0.3), transparent);
+    margin: 20px auto;
+    width: 80%;
+}
+
 .titulo {
     font-family: 'Dancing Script', cursive;
-    font-size: 4.5rem;
+    font-size: 3.5rem; /* Ajustado para que no sea gigante */
     color: #85113F;
     margin: 0;
 }
 
 .titulo2 {
     font-family: 'Dancing Script', cursive;
-    font-size: 5rem;
+    font-size: 4rem;
     color: #c2185b;
-    margin: 0;
+    margin-bottom: 10px;
 }
 
-/* Asegura que todo esté centrado en PC y Celular */
-#contenido-principal {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    width: 100%;
-    background-image: url(https://i.imgur.com/vJKUxVq.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed; /* Hace que el fondo se vea profesional en PC */
-    padding: 40px 10px;
+.mensaje-texto p {
+    font-size: 1.15rem;
+    color: #5a0a33;
+    line-height: 1.6;
+    text-align: center;
 }
+
+/* Para celular, bajamos un poco más los tamaños */
+@media (max-width: 768px) {
+    .titulo { font-size: 2.5rem; }
+    .titulo2 { font-size: 2.8rem; }
+    .tarjeta-unica { padding: 25px 15px; }
+    .mensaje-texto p { font-size: 1rem; }
 }
     </style>
 </head>
@@ -183,22 +194,20 @@ body, html {
     </div>
 
     <div id="contenido-principal">
-        <div class="contenedor-cabecera">
-    <div class="tarjeta-blanca">
-    <h1 class="titulo">¡Feliz Día Mamá!</h1>
-    <h1 class="titulo2">Rosa Galvez Benites</h1>
-</div>
-</div>
-        <div class="mensaje">
-            <p align="center">Mamá, a veces la vida va tan rápido que olvido detenerme y decirte lo que realmente siento. Pero hoy quiero que lo escuches claro: tú eres el centro de mi mundo y una de las persona más importante que tengo.
-
-Tu amor ha sido el suelo que piso y el cielo que me cuida. Gracias por ser esa fuerza silenciosa que nunca se rinde y por enseñarme, sin decir mucho, lo que significa la verdadera entrega. No importa a dónde me lleve el camino o cuántos años pasen, siempre serás mi refugio, mi primera llamada cuando estoy feliz y mi primer pensamiento cuando necesito paz.</p>
-            <div align="center"><br>
-            </div>
-            <p align="center">Te amo no solo por ser mi madre, sino por ser mi ejemplo, mi hogar y el regalo más grande que la vida me ha dado</p>
+    <div class="tarjeta-unica">
+        <h1 class="titulo">¡Feliz Día Mamá!</h1>
+        <h1 class="titulo2">Rosa Galvez Benites</h1>
+        
+        <div class="linea-divisora"></div> <div class="mensaje-texto">
+            <p>Mamá, a veces la vida va tan rápido que olvido detenerme y decirte lo que realmente siento. Pero hoy quiero que lo escuches claro: tú eres el centro de mi mundo y una de las personas más importantes que tengo.</p>
+            <br>
+            <p>Tu amor ha sido el suelo que piso y el cielo que me cuida. Gracias por ser esa fuerza silenciosa que nunca se rinde y por enseñarme, sin decir mucho, lo que significa la verdadera entrega. No importa a dónde me lleve el camino o cuántos años pasen, siempre serás mi refugio.</p>
+            <br>
+            <p>Te amo no solo por ser mi madre, sino por ser mi ejemplo, mi hogar y el regalo más grande que la vida me ha dado.</p>
             <div class="corazon">❤️</div>
         </div>
     </div>
+</div>
 
     <script>
         const pantallaInicio = document.getElementById('pantalla-inicio');

@@ -127,20 +127,23 @@ body, html {
 	/* Esta clase le da el mismo fondo que al mensaje */
 }
 .tarjeta-unica {
-    /* Fondo de cristal muy suave para que no tape la foto */
-    background: rgba(255, 255, 255, 0.25); 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    /* Bajamos la opacidad a 0.1 o 0.15 para que sea casi invisible */
+    background: rgba(255, 255, 255, 0.12); 
+    
+    /* Aumentamos un poco el desenfoque para que el texto siga siendo legible */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    
+    /* Un borde muy fino para dar estructura sin tapar la foto */
+    border: 1px solid rgba(255, 255, 255, 0.1); 
     
     padding: 40px 30px;
     border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0px 15px 35px rgba(0,0,0,0.1);
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.05); /* Sombra muy sutil */
     
     width: 90%;
     max-width: 650px;
     margin: 20px auto;
-    text-align: center;
 }
 
 /* Línea decorativa opcional entre nombre y mensaje */
@@ -170,6 +173,17 @@ body, html {
     color: #5a0a33;
     line-height: 1.6;
     text-align: center;
+}
+.mensaje-texto p {
+    font-size: 1.15rem;
+    color: #ffffff; /* Texto blanco suele verse mejor en fondos muy transparentes */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Sombra al texto para que resalte sobre la foto */
+    line-height: 1.6;
+}
+
+.titulo, .titulo2 {
+    /* Si prefieres mantener los colores rosa/vino, añade una sombra clara atrás */
+    text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.4);
 }
 
 /* Para celular, bajamos un poco más los tamaños */

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Día de la Madre!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales para ocupar toda la pantalla y resetear márgenes */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+    min-height: 100%; /* Cambiado de height a min-height */
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffe6e6;
+    /* Eliminamos overflow: hidden para permitir el scroll */
+}
+
+/* Cambiamos la pantalla de inicio a 'fixed' para que cubra todo 
+   incluso si hay scroll antes de abrirla */
+#pantalla-inicio {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100; /* Aseguramos que esté arriba de todo */
+    cursor: pointer;
+    transition: opacity 1s ease-in-out;
+}
+
+#contenido-principal {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Cambiado a min-height para que crezca con el texto */
+    width: 100%;
+    background-image: url(https://i.imgur.com/vJKUxVq.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; /* Recomendado para que la imagen se adapte mejor */
+    text-align: center;
+    padding: 40px 20px; /* Más espacio arriba y abajo */
+}
+
+        .titulo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.5rem; /* Tamaño grande para PC */
+            color: #85113F;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+		.titulo2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem; /* Tamaño grande para PC */
+            color: #c2185b;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .mensaje {
+            font-size: 1 rem;
+            color: #880e4f;
+            max-width: 600px;
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .corazon {
+            font-size: 3rem;
+            color: #e91e63;
+            margin-top: 20px;
+        }
+
+        /* Animación para que el texto de inicio palpite */
+        @keyframes latido {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Ocultar el reproductor de audio */
+        audio {
+            display: none;
+        }
+
+        /* --- ADAPTACIÓN PARA CELULARES (Responsive) --- */
+        @media (max-width: 768px) {
+            .titulo {
+                font-size: 3rem; /* Letra un poco más pequeña para que quepa en el celular */
+            }
+			.titulo2 {
+                font-size: 4.5rem; /* Letra un poco más pequeña para que quepa en el celular */
+            }
+            .mensaje {
+                font-size: 1rem;
+                padding: 20px;
+                width: 90%;
+            }
+            .texto-inicio {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="musica" loop>
+        <source src="https://dl.dropboxusercontent.com/scl/fi/hve3wni4i2qfxfw62o5jf/feliz-dia-mamita.mp3?rlkey=rhkirl3vwyr4f70nkrlfr5gjf&st=9lelnk79&dl=0" type="audio/mpeg">
+    </audio>
+
+    <div id="pantalla-inicio">
+        <div class="texto-inicio">
+            Toca la pantalla para abrir tu sorpresa ❤️
+        </div>
+    </div>
+
+    <div id="contenido-principal">
+        <h1 class="titulo">¡Feliz Día Mamá!</h1>
+		 <h1 class="titulo2">Mariluz Corona</h1>
+        <div class="mensaje">
+            <p align="center">Mamá, a veces la vida va tan rápido que olvido detenerme y decirte lo que realmente siento. Pero hoy quiero que lo escuches claro: tú eres el centro de mi mundo y una de las persona más importante que tengo.
+
+Tu amor ha sido el suelo que piso y el cielo que me cuida. Gracias por ser esa fuerza silenciosa que nunca se rinde y por enseñarme, sin decir mucho, lo que significa la verdadera entrega. No importa a dónde me lleve el camino o cuántos años pasen, siempre serás mi refugio, mi primera llamada cuando estoy feliz y mi primer pensamiento cuando necesito paz.</p>
+            <div align="center"><br>
+            </div>
+            <p align="center">Te amo no solo por ser mi madre, sino por ser mi ejemplo, mi hogar y el regalo más grande que la vida me ha dado</p>
+            <div class="corazon">❤️</div>
+        </div>
+    </div>
+
+    <script>
+        const pantallaInicio = document.getElementById('pantalla-inicio');
+        const contenidoPrincipal = document.getElementById('contenido-principal');
+        const musica = document.getElementById('musica');
+
+        // Cuando el usuario toca o hace clic en la pantalla de inicio
+        pantallaInicio.addEventListener('click', () => {
+            // 1. Reproducir la música
+            musica.play();
+            
+            // 2. Efecto de desvanecimiento de la pantalla de inicio
+            pantallaInicio.style.opacity = '0';
+            
+            // 3. Esperar a que termine el efecto y mostrar la tarjeta
+            setTimeout(() => {
+                pantallaInicio.style.display = 'none';
+                contenidoPrincipal.style.display = 'flex';
+            }, 1000); // 1000 milisegundos = 1 segundo
+        });
+    </script>
+
+</body>
+</html>
